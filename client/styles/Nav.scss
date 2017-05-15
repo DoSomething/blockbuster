@@ -1,0 +1,25 @@
+@import './toolbox';
+
+.nav {
+  margin-bottom: $spacing;
+
+  .nav__item {
+    display: inline-block;
+    font-size: 1rem;
+    padding: $halfSpacing $spacing;
+    margin: 0 $halfSpacing;
+    background: $gray;
+    border: none;
+    color: $black;
+    border-radius: $halfSpacing / 2;
+
+    &:hover {
+      cursor: pointer;
+    }
+
+    &.-blackout {
+      background: $black;
+      color: $white;
+    }
+  }
+}

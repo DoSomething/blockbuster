@@ -1,0 +1,30 @@
+@import './toolbox';
+
+.manage {
+  .manage__form {
+    margin-top: $spacing;
+
+    img {
+      width: 150px;
+      height: 150px;
+    }
+
+    label {
+      display: block;
+
+      input, select {
+        margin-left: $spacing;
+      }
+    }
+
+    .manage__form-item {
+      margin-top: $spacing * 2;
+
+      > div {
+        vertical-align: top;
+        display: inline-block;
+        margin: $halfSpacing;
+      }
+    }
+  }
+}

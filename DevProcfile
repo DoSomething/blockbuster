@@ -1,0 +1,3 @@
+web: nodemon server/index.js --ignore 'client/*' --ignore 'public/*' --exec babel-node
+webpack: webpack --watch --colors
+mongo: mongod --port 27017
