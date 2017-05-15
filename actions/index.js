@@ -41,6 +41,7 @@ export const _modeMapping = {
 };
 
 export const _socketEvents = [
+  SET_SLIDE,
   SET_VOICE_MESSAGE,
   SET_MODE,
   SET_SHOW_BLACKOUT,
