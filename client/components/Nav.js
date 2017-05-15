@@ -3,6 +3,7 @@ import { connect } from 'react-redux';
 import {
   navigate as navigateAction,
   setMode as setModeAction,
+  sync as syncAction,
 } from '../../actions';
 import { modes } from '../../shared/modes';
 import '../styles/Nav.scss';
@@ -11,7 +12,7 @@ const Item = ({ title, style, action }) => (
   <button className={`nav__item ${style ? `-${style}` : ''}`} onClick={action}>{ title }</button>
 );
 
-const mapItems = (items, navigate, setMode) => items.map((item) => {
+const mapItems = (items, navigate, setMode, sync) => items.map((item) => {
   let props = {
     title: item,
     style: null,
@@ -26,7 +27,12 @@ const mapItems = (items, navigate, setMode) => items.map((item) => {
         action: () => setMode(modes.BLACKOUT, true)
       }
       break;
-    case 'sync': // TODO
+    case 'sync':
+      props = {
+        ...props,
+        action: () => sync(),
+      };
+      break;
   }
 
   return ( <Item key={item} {...props} /> );
@@ -37,11 +43,12 @@ const mapStateToProps = (state) => ({});
 const mapDispatchToProps = (dispatch) => ({
   navigate: path => dispatch(navigateAction(path)),
   setMode: (mode, isLive) => dispatch(setModeAction(mode, isLive)),
+  sync: () => dispatch(syncAction()),
 });
 
-const Nav = ({ items, navigate, setMode }) => (
+const Nav = ({ items, navigate, setMode, sync }) => (
   <div className="nav">
-    { mapItems(items, navigate, setMode) }
+    { mapItems(items, navigate, setMode, sync) }
   </div>
 );
 

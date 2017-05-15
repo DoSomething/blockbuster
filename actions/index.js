@@ -31,6 +31,11 @@ export function setupVoice(voice) {
   return { type: SETUP_VOICE, voice };
 }
 
+export const SYNC = 'SYNC';
+export function sync() {
+  return { type: SYNC };
+}
+
 // ---
 // Meta props used by middleware
 // ---
@@ -55,4 +60,5 @@ export const _socketEvents = [
   ADD_SHOW_LOOP,
   EDIT_SHOW_LOOP,
   REMOVE_SHOW_LOOP,
+  SYNC,
 ];
