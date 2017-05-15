@@ -25,6 +25,12 @@ export * from './show';
 export const SET_SLIDE = 'SET_SLIDE';
 export * from './slide';
 
+// Misc actions
+export const SETUP_VOICE = 'SETUP_VOICE';
+export function setupVoice(voice) {
+  return { type: SETUP_VOICE, voice };
+}
+
 // ---
 // Meta props used by middleware
 // ---

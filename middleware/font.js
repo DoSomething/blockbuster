@@ -1,7 +1,7 @@
-import { ADD_SHOW_VOICE, EDIT_SHOW_VOICE } from '../actions';
+import { ADD_SHOW_VOICE, EDIT_SHOW_VOICE, SETUP_VOICE } from '../actions';
 
 // @see http://jsfiddle.net/amir_ch/x63jF/
-function addFont(fontSrc) {
+function addFont(fontSrc, fontFamily) {
   const fontID = `font-${fontSrc}`;
 
   if (!document.getElementById(fontID)) {
@@ -13,12 +13,23 @@ function addFont(fontSrc) {
     link.href = fontSrc;
     link.media = 'all';
     head.appendChild(link);
+
+    const dots = fontSrc.split('.');
+    const format = dots[dots.length - 1].replace('.', '');
+    const style = document.createElement('style');
+    style.appendChild(document.createTextNode(`
+      @font-face {
+        font-family: ${fontFamily};
+        src: url('${fontSrc}') format(${format});
+      }
+    `));
+    head.appendChild(style);
   }
 }
 
 export const font = store => next => action => {
-  if (action.type === ADD_SHOW_VOICE || action.type === EDIT_SHOW_VOICE) {
-    if (action.voice.fontSrc) addFont(action.voice.fontSrc);
+  if (action.type === ADD_SHOW_VOICE || action.type === EDIT_SHOW_VOICE || action.type === SETUP_VOICE) {
+    if (action.voice.fontSrc) addFont(action.voice.fontSrc, action.voice.fontFamily);
   }
 
   return next(action);
