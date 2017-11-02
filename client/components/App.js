@@ -8,6 +8,7 @@ import Screen from './Screen';
 import Voice from './Voice';
 import Manage from './Manage';
 import Slides from './Slides';
+import Tweet from './Tweet';
 
 import '../styles/App.scss';
 
@@ -28,10 +29,11 @@ const App = ({ path }) => {
         <Screen show="preview" />
       </Panel>
       <Panel>
-        <Nav items={['voice', 'slides', 'manage', 'sync']} />
+        <Nav items={['voice', 'slides', 'tweet', 'manage', 'sync']} />
         <Voice />
         <Manage />
         <Slides />
+        <Tweet />
       </Panel>
     </div>
   );

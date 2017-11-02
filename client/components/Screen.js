@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import TweetEmbed from 'react-tweet-embed'
 import { modes } from '../../shared/modes';
 import '../styles/Screen.scss';
 
@@ -10,6 +11,7 @@ const mapStateToProps = (state) => ({
   message: state.voice,
   slide: state.slide,
   slides: state.show.slides,
+  tweet: state.tweet,
 });
 
 const mapDispatchToProps = (dispatch) => ({ /* ... */ });
@@ -19,10 +21,11 @@ function getShowProps(props, show) {
 }
 
 const Screen = (props) => {
-  const { size, show, slides } = props;
+  const { size, show, slides, tweet } = props;
 
   const mode = getShowProps(props.mode, show);
 
+  const voice = getShowProps(props.message, show);
   const style = {};
   let content = null;
 
@@ -38,7 +41,6 @@ const Screen = (props) => {
       break;
 
     case modes.VOICE:
-      const voice = getShowProps(props.message, show);
       content = ( <VoiceText text={voice.message} /> );
 
       if (voice.display) {
@@ -49,6 +51,20 @@ const Screen = (props) => {
         style.fontFamily = fontFamily;
         style.color = fontColor;
       }
+      break;
+
+    case modes.TWEET:
+      content = (<TweetEmbed id={getShowProps(tweet, show)} />);
+
+      if (voice.display) {
+        const { background, fontFamily, fontColor, fontSize } = voice.display;
+
+        style.backgroundImage = `url(${voice.display.background})`;
+        style.fontSize = fontSize;
+        style.fontFamily = fontFamily;
+        style.color = fontColor;
+      }
+
       break;
   }
 

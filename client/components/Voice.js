@@ -15,7 +15,7 @@ const mapDispatchToProps = {
 
 const Voice = ({ setVoiceMessage, path, preview, voices }) => {
   if (path !== 'voice') return null;
-  
+
   const handleDisplayChange = display => setVoiceMessage(preview.message, display, false);
   const setPreviewMessage = msg => setVoiceMessage(msg, preview.display, false);
   const setLiveMessage = () => setVoiceMessage(preview.message, preview.display, true);

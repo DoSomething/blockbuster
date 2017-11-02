@@ -34,5 +34,9 @@ export const initialState = {
       },
     ],
     blackout: '#111',
-  }
+  },
+  tweet: {
+    live: null,
+    preview: null,
+  },
 };

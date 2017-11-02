@@ -1,4 +1,7 @@
-import { SET_SLIDE } from './';
+import {
+  SET_SLIDE, ADD_SHOW_SLIDE, EDIT_SHOW_SLIDE,
+  EDIT_SHOW_SLIDE_ORDER, REMOVE_SHOW_SLIDE,
+} from './';
 
 export function setSlide(slide, isLive) {
   return { type: SET_SLIDE, slide, isLive };

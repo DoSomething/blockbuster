@@ -26,6 +26,9 @@ export const REMOVE_SHOW_SLIDE = 'REMOVE_SHOW_SLIDE';
 export const SET_SLIDE = 'SET_SLIDE';
 export * from './slide';
 
+export const SET_TWEET = 'SET_TWEET';
+export * from './tweet';
+
 export const SYNC = 'SYNC';
 export function sync() {
   return { type: SYNC };
@@ -38,6 +41,7 @@ export function sync() {
 export const _modeMapping = {
   SET_VOICE_MESSAGE: modes.VOICE,
   SET_SLIDE: modes.SLIDE,
+  SET_TWEET: modes.TWEET,
 };
 
 export const _socketEvents = [
@@ -56,4 +60,5 @@ export const _socketEvents = [
   EDIT_SHOW_LOOP,
   REMOVE_SHOW_LOOP,
   SYNC,
+  SET_TWEET,
 ];

@@ -1,4 +1,7 @@
-import { SET_VOICE_MESSAGE, SETUP_VOICE } from './';
+import {
+  SET_VOICE_MESSAGE, EDIT_SHOW_VOICE, SETUP_VOICE,
+  ADD_SHOW_VOICE, REMOVE_SHOW_VOICE,
+} from './';
 
 export function setupVoice(voice) {
   return { type: SETUP_VOICE, voice };
