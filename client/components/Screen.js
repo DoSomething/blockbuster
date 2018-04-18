@@ -34,7 +34,7 @@ const Screen = (props) => {
     case modes.SLIDE:
       const slideIndex = getShowProps(props.slide, show);
       const slide = slides[slideIndex];
-      if (slide) style.backgroundImage = `url(${slide.background})`;
+      if (slide) style.backgroundImage = `url("${slide.background}")`;
       break;
 
     case modes.VOICE:
@@ -44,7 +44,7 @@ const Screen = (props) => {
       if (voice.display) {
         const { background, fontFamily, fontColor, fontSize } = voice.display;
 
-        style.backgroundImage = `url(${voice.display.background})`;
+        style.backgroundImage = `url("${voice.display.background}")`;
         style.fontSize = fontSize;
         style.fontFamily = fontFamily;
         style.color = fontColor;
