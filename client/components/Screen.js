@@ -3,7 +3,13 @@ import { connect } from 'react-redux';
 import { modes } from '../../shared/modes';
 import '../styles/Screen.scss';
 
-const VoiceText = ({ text }) => ( <h1 className="screen__text">{ text }</h1> );
+// Helper function to scale the text font size based on length
+function scaleFontSize(fontSize, text='') {
+  const shrinkFontToDecimal = 1 + ((text.length / 70) / 10);
+  return (Number(fontSize.replace(/px/, '')) / shrinkFontToDecimal) + 'px';
+}
+
+const VoiceText = ({ text, style }) => ( <h1 className="screen__text" style={style}>{ text }</h1> );
 
 const mapStateToProps = (state) => ({
   mode: state.mode,
@@ -39,16 +45,19 @@ const Screen = (props) => {
 
     case modes.VOICE:
       const voice = getShowProps(props.message, show);
-      content = ( <VoiceText text={voice.message} /> );
+      let contentStyle = {}
 
       if (voice.display) {
         const { background, fontFamily, fontColor, fontSize } = voice.display;
 
         style.backgroundImage = `url("${voice.display.background}")`;
-        style.fontSize = fontSize;
         style.fontFamily = fontFamily;
         style.color = fontColor;
+
+        contentStyle.fontSize = scaleFontSize(fontSize, voice.message);
       }
+
+      content = ( <VoiceText text={voice.message} style={contentStyle} /> );
       break;
   }
 
