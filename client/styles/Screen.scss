@@ -10,10 +10,10 @@
   .screen__text {
     font-size: 122px;
     position: relative;
-    top: 40%;
+    top: 35%;
     transform: translateY(-40%);
     word-wrap: break-word;
-    margin: $spacing * 4;
+    margin: $spacing * 10;
   }
 
   &:nth-of-type(2) {
