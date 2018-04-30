@@ -28,6 +28,11 @@ class SlideShow extends React.Component {
 
   render() {
     const slide = this.props.slides[this.state.slide];
+
+    if (!slide) {
+      return null;
+    }
+    
     const src = slide.background;
 
     return (
