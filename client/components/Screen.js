@@ -7,7 +7,7 @@ import '../styles/Screen.scss';
 // Helper function to scale the text font size based on length
 function scaleFontSize(fontSize, text='') {
   // @TODO use em's for smarter conversions off of Base 20px and set voice font size
-  const shrinkFontToDecimal = 1 + ((text.length / 70) / 10);
+  const shrinkFontToDecimal = 1 + ((text.length / 20) / 10);
   return (Number(fontSize.replace(/px/, '')) / shrinkFontToDecimal) + 'px';
 }
 
