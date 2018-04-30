@@ -33,7 +33,7 @@ const Loops = ({ path, slides, setLoop, preview, mode, live, loops }) => {
     <div className="slides">
       <h1>Loops</h1>
       <div>
-        {loops.map(({ name }, index) => {
+        {loops.map(({ name, speed }, index) => {
           const loopSlides = slides.filter(slide => parseInt(slide.loop, 10) === index);
           return (
               <div
@@ -43,7 +43,7 @@ const Loops = ({ path, slides, setLoop, preview, mode, live, loops }) => {
               }
               onClick={() => handleClick(index)}
             >
-              <SlideShow slides={loopSlides} />
+              <SlideShow slides={loopSlides} speed={speed} />
               <span>{ name }</span>
             </div>
           );

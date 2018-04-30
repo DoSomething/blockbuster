@@ -13,13 +13,15 @@ class SlideShow extends React.Component {
   }
 
   componentDidMount() {
+    const speed = this.props.speed;
+    const slideShowSpeed = (speed && speed > 0 ? speed : 5) * 1000;
     this.interval = setInterval(() => {
       let slide = this.state.slide+1;
       if (slide >= this.props.slides.length) {
         slide = 0;
       }
       this.setState({slide});
-    }, 5000)
+    }, slideShowSpeed);
   }
 
   componentWillUnmount() {
@@ -32,7 +34,7 @@ class SlideShow extends React.Component {
     if (!slide) {
       return null;
     }
-    
+
     const src = slide.background;
 
     return (

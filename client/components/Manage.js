@@ -200,6 +200,7 @@ class LoopForm extends React.Component {
   makeStateFromProps(props) {
     return {
       name: props.data ? props.data.name : '',
+      speed: props.data ? props.data.speed : 5,
       slides: props.data ? props.data.slides : [],
     };
   }
@@ -219,7 +220,7 @@ class LoopForm extends React.Component {
   }
 
   render() {
-    const { name } = this.state;
+    const { name, speed } = this.state;
     const { index, remove } = this.props;
 
     return (
@@ -230,6 +231,9 @@ class LoopForm extends React.Component {
         <div>
           <label>loop name
             <input name="name" type="text" value={name} onChange={this.onChange} />
+          </label>
+          <label>loop speed
+            <input name="speed" type="number" value={speed} onChange={this.onChange} min="1" />
           </label>
           <button onClick={this.onSubmit}>submit</button>
           { remove ? <button onClick={remove}>remove</button> : null }

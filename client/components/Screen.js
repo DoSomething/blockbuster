@@ -68,7 +68,10 @@ const Screen = (props) => {
       const loopIndex = getShowProps(props.loop, show);
       const loop = loops[loopIndex];
       const loopSlides = slides.filter(slide => parseInt(slide.loop, 10) === loopIndex)
-      content = <SlideShow slides={loopSlides} />
+      if (loop) {
+        content = <SlideShow slides={loopSlides} speed={loop.speed} />
+      }
+      break;
   }
 
   return (
