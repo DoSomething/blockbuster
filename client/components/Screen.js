@@ -1,10 +1,12 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { modes } from '../../shared/modes';
+import SlideShow from './SlideShow';
 import '../styles/Screen.scss';
 
 // Helper function to scale the text font size based on length
 function scaleFontSize(fontSize, text='') {
+  // @TODO use em's for smarter conversions off of Base 20px and set voice font size
   const shrinkFontToDecimal = 1 + ((text.length / 70) / 10);
   return (Number(fontSize.replace(/px/, '')) / shrinkFontToDecimal) + 'px';
 }
@@ -16,6 +18,8 @@ const mapStateToProps = (state) => ({
   message: state.voice,
   slide: state.slide,
   slides: state.show.slides,
+  loops: state.show.loops,
+  loop: state.loop,
 });
 
 const mapDispatchToProps = (dispatch) => ({ /* ... */ });
@@ -25,7 +29,7 @@ function getShowProps(props, show) {
 }
 
 const Screen = (props) => {
-  const { size, show, slides } = props;
+  const { size, show, slides, loops } = props;
 
   const mode = getShowProps(props.mode, show);
 
@@ -59,6 +63,12 @@ const Screen = (props) => {
 
       content = ( <VoiceText text={voice.message} style={contentStyle} /> );
       break;
+
+    case modes.LOOP:
+      const loopIndex = getShowProps(props.loop, show);
+      const loop = loops[loopIndex];
+      const loopSlides = slides.filter(slide => slide.loop == loopIndex)
+      content = <SlideShow slides={loopSlides} />
   }
 
   return (

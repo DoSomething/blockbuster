@@ -128,7 +128,7 @@ class SlideForm extends React.Component {
     return {
       name: props.data ? props.data.name : '',
       background: props.data ? props.data.background : '',
-      loop: props.data ? props.data.loop : '',
+      loop: props.data ? props.data.loop : 'none',
     };
   }
 
@@ -162,11 +162,12 @@ class SlideForm extends React.Component {
           <label>background url
             <input name="background" type="text" value={background} onChange={this.onChange} />
           </label>
-          {/* TODO <label>loop
+          <label>loop
             <select name="loop" value={loop} onChange={this.onChange}>
-              {loops.map(lp => <option key={lp} value={lp}>{ lp }</option>)}
+              <option key="default" value="none">none</option>
+              {loops.map((lp, i) => <option key={i} value={i}>{ lp.name }</option>)}
             </select>
-          </label>*/}
+          </label>
           <button onClick={this.onSubmit}>submit</button>
           { changeOrder ? (
             <label>order
@@ -175,6 +176,62 @@ class SlideForm extends React.Component {
               </select>
             </label>
           ) : null }
+          { remove ? <button onClick={remove}>remove</button> : null }
+        </div>
+      </div>
+    );
+  }
+};
+
+class LoopForm extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = this.makeStateFromProps(props);
+
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState(this.makeStateFromProps(nextProps));
+  }
+
+  makeStateFromProps(props) {
+    return {
+      name: props.data ? props.data.name : '',
+      slides: props.data ? props.data.slides : [],
+    };
+  }
+
+  onChange(e) {
+    const key = e.target.name;
+    const value = e.target.value;
+
+    this.setState({
+      [key]: value,
+    });
+  }
+
+  onSubmit() {
+    const { index, action } = this.props;
+    index ? action(this.state, index) : action(this.state);
+  }
+
+  render() {
+    const { name } = this.state;
+    const { index, remove } = this.props;
+
+    return (
+      <div className="manage__form-item">
+        <div>
+           {null }
+        </div>
+        <div>
+          <label>loop name
+            <input name="name" type="text" value={name} onChange={this.onChange} />
+          </label>
+          <button onClick={this.onSubmit}>submit</button>
           { remove ? <button onClick={remove}>remove</button> : null }
         </div>
       </div>
@@ -226,6 +283,23 @@ const Manage = (props) => {
             index={index}
             slides={slides}
             changeOrder={newIndex => editShowSlideOrder(index, newIndex)}
+          />
+        ))}
+      </div>
+       <div className="manage__form">
+        <h3>Loops</h3>
+      </div>
+      <div className="manage__form">
+        <LoopForm action={addShowLoop} slides={slides} />
+      </div>
+      <div className="manage__form">
+        {loops.map((loop, index) => (
+          <LoopForm
+            key={index}
+            action={(loop) => editShowLoop(loop, index)}
+            remove={() => removeShowLoop(index)}
+            data={loop}
+            index={index}
           />
         ))}
       </div>
