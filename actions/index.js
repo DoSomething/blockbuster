@@ -25,6 +25,9 @@ export * from './show';
 export const SET_SLIDE = 'SET_SLIDE';
 export * from './slide';
 
+export const SET_LOOP = 'SET_LOOP';
+export * from './loop';
+
 // Misc actions
 export const SETUP_VOICE = 'SETUP_VOICE';
 export function setupVoice(voice) {
@@ -43,10 +46,12 @@ export function sync() {
 export const _modeMapping = {
   SET_VOICE_MESSAGE: modes.VOICE,
   SET_SLIDE: modes.SLIDE,
+  SET_LOOP: modes.LOOP,
 };
 
 export const _socketEvents = [
   SET_SLIDE,
+  SET_LOOP,
   SET_VOICE_MESSAGE,
   SET_MODE,
   SET_SHOW_BLACKOUT,

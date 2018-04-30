@@ -4,6 +4,7 @@ import { mode } from './mode';
 import { navigation } from './navigation';
 import { show } from './show';
 import { slide } from './slide';
+import { loop } from './loop';
 
 export function reduce(reducers) {
   return combineReducers({
@@ -12,5 +13,6 @@ export function reduce(reducers) {
     navigation,
     show,
     slide,
+    loop,
   });
 }

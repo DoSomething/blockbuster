@@ -20,6 +20,10 @@ export const initialState = {
     live: '',
     preview: '',
   },
+  loop: {
+    live: '',
+    preview: '',
+  },
   show: {
     slides: [],
     loops: [],
