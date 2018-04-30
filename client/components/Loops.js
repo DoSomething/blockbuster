@@ -34,7 +34,7 @@ const Loops = ({ path, slides, setLoop, preview, mode, live, loops }) => {
       <h1>Loops</h1>
       <div>
         {loops.map(({ name }, index) => {
-          const loopSlides = slides.filter(slide => slide.loop == index);
+          const loopSlides = slides.filter(slide => parseInt(slide.loop, 10) === index);
           return (
               <div
               key={index}
