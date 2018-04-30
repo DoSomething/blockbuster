@@ -98,7 +98,13 @@ export function show(state = {}, action) {
         loops: [
           ...state.loops.slice(0, action.index),
           ...state.loops.slice(action.index + 1),
-        ]
+        ],
+        slides: state.slides.map((slide, index) => {
+          if (parseInt(slide.loop, 10) === index) {
+            slide.loop = "";
+          }
+          return slide
+        }),
       }
 
     default:
