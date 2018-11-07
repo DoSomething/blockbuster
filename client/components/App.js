@@ -9,6 +9,7 @@ import Voice from './Voice';
 import Manage from './Manage';
 import Slides from './Slides';
 import Loops from './Loops';
+import Countdown from './Countdown';
 
 import '../styles/App.scss';
 
@@ -29,11 +30,12 @@ const App = ({ path }) => {
         <Screen show="preview" />
       </Panel>
       <Panel>
-        <Nav items={['voice', 'slides', 'manage', 'loops', 'sync']} />
+        <Nav items={['voice', 'slides', 'manage', 'loops', 'countdown', 'sync']} />
         <Voice />
         <Manage />
         <Slides />
         <Loops />
+        <Countdown/>
       </Panel>
     </div>
   );
