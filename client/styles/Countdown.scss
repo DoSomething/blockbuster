@@ -1,0 +1,35 @@
+@import './toolbox';
+
+.countdown-container {
+  .countdown {
+    display: inline-block;
+    margin: $spacing;
+    text-align: center;
+    vertical-align: top;
+
+    .countdown__item {
+      background-size: 100% 100%;
+    }
+
+    &.-highlighted {
+      border: 1px solid $yellow;
+    }
+
+    &.-highlighted-live {
+      border: 1px solid $red;
+    }
+
+    img {
+      width: 150px;
+      height: 150px;
+    }
+
+    span {
+      width: 150px;
+    }
+
+    img, span {
+      display: block;
+    }
+  }
+}

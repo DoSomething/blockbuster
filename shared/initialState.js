@@ -24,6 +24,11 @@ export const initialState = {
     live: '',
     preview: '',
   },
+  countdown: {
+    on: false,
+    time: 60,
+    interval: null,
+  },
   show: {
     slides: [],
     loops: [],
@@ -37,6 +42,15 @@ export const initialState = {
         fontColor: '#111',
       },
     ],
+    countdown: {
+      background: 'https://s3.amazonaws.com/gala-2018/VOG.png',
+      seconds: 60,
+      time: 60,
+      fontSrc: '',
+      fontSize: '122px',
+      fontFamily: 'Arial, Helvetica, sans-serif',
+      fontColor: '#111',
+    },
     blackout: '#111',
   }
 };

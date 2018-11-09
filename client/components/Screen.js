@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { modes } from '../../shared/modes';
 import SlideShow from './SlideShow';
+import Countdown from './Countdown';
 import '../styles/Screen.scss';
 
 // Helper function to scale the text font size based on length
@@ -20,6 +21,8 @@ const mapStateToProps = (state) => ({
   slides: state.show.slides,
   loops: state.show.loops,
   loop: state.loop,
+  showCountdown: state.show.countdown,
+  countdown: state.countdown,
 });
 
 const mapDispatchToProps = (dispatch) => ({ /* ... */ });
@@ -29,11 +32,12 @@ function getShowProps(props, show) {
 }
 
 const Screen = (props) => {
-  const { size, show, slides, loops } = props;
+  const { size, show, slides, loops, countdown, showCountdown } = props;
 
   const mode = getShowProps(props.mode, show);
 
   const style = {};
+  const contentStyle = {};
   let content = null;
 
   switch (mode) {
@@ -49,7 +53,6 @@ const Screen = (props) => {
 
     case modes.VOICE:
       const voice = getShowProps(props.message, show);
-      let contentStyle = {}
 
       if (voice.display) {
         const { background, fontFamily, fontColor, fontSize } = voice.display;
@@ -72,8 +75,17 @@ const Screen = (props) => {
         content = <SlideShow slides={loopSlides} speed={loop.speed} />
       }
       break;
-  }
 
+    case modes.COUNTDOWN:
+      style.backgroundImage = `url("${showCountdown.background}")`;
+      style.fontFamily = showCountdown.fontFamily;
+      style.color = showCountdown.fontColor;
+      contentStyle.fontSize = showCountdown.fontSize;
+
+      content = <VoiceText text={countdown.time} style={contentStyle} />;
+      break;
+  }
+  
   return (
     <div className={`screen -${size} -${show}`} style={style}>
       { content }

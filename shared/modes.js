@@ -3,4 +3,5 @@ export const modes = {
   SLIDE: 'SLIDE',
   BLACKOUT: 'BLACKOUT',
   LOOP: 'LOOP',
+  COUNTDOWN: 'COUNTDOWN',
 };

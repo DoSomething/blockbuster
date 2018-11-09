@@ -9,7 +9,7 @@ import Voice from './Voice';
 import Manage from './Manage';
 import Slides from './Slides';
 import Loops from './Loops';
-import Countdown from './Countdown';
+import CountdownContainer from './CountdownContainer';
 
 import '../styles/App.scss';
 
@@ -35,7 +35,7 @@ const App = ({ path }) => {
         <Manage />
         <Slides />
         <Loops />
-        <Countdown/>
+        <CountdownContainer />
       </Panel>
     </div>
   );
