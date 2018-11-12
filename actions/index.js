@@ -20,6 +20,7 @@ export const REMOVE_SHOW_SLIDE = 'REMOVE_SHOW_SLIDE';
 export const ADD_SHOW_LOOP = 'ADD_SHOW_LOOP';
 export const EDIT_SHOW_LOOP = 'EDIT_SHOW_LOOP';
 export const REMOVE_SHOW_LOOP = 'REMOVE_SHOW_LOOP';
+export const EDIT_SHOW_COUNTDOWN = 'EDIT_SHOW_COUNTDOWN';
 export * from './show';
 
 export const SET_SLIDE = 'SET_SLIDE';
@@ -27,6 +28,11 @@ export * from './slide';
 
 export const SET_LOOP = 'SET_LOOP';
 export * from './loop';
+
+export const START_COUNTDOWN = 'START_COUNTDOWN';
+export const STOP_COUNTDOWN = 'STOP_COUNTDOWN';
+export const RESET_COUNTDOWN = 'RESET_COUNTDOWN';
+export * from './countdown';
 
 // Misc actions
 export const SETUP_VOICE = 'SETUP_VOICE';
@@ -54,6 +60,9 @@ export const _socketEvents = [
   SET_LOOP,
   SET_VOICE_MESSAGE,
   SET_MODE,
+  START_COUNTDOWN,
+  STOP_COUNTDOWN,
+  RESET_COUNTDOWN,
   SET_SHOW_BLACKOUT,
   ADD_SHOW_VOICE,
   EDIT_SHOW_VOICE,
@@ -65,5 +74,6 @@ export const _socketEvents = [
   ADD_SHOW_LOOP,
   EDIT_SHOW_LOOP,
   REMOVE_SHOW_LOOP,
+  EDIT_SHOW_COUNTDOWN,
   SYNC,
 ];

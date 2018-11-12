@@ -10,6 +10,7 @@ import {
   ADD_SHOW_LOOP,
   EDIT_SHOW_LOOP,
   REMOVE_SHOW_LOOP,
+  EDIT_SHOW_COUNTDOWN,
 } from './';
 
 export function setShowBlackout(blackout) {
@@ -54,4 +55,8 @@ export function editShowLoop(loop, index) {
 
 export function removeShowLoop(index) {
   return { type: REMOVE_SHOW_LOOP, index };
+}
+
+export function editShowCountdown(countdown) {
+  return { type: EDIT_SHOW_COUNTDOWN, countdown };
 }
