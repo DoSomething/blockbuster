@@ -12,6 +12,7 @@ import {
   addShowLoop,
   editShowLoop,
   removeShowLoop,
+  editShowCountdown,
 } from '../../actions';
 import '../styles/Manage.scss';
 
@@ -32,6 +33,7 @@ const mapDispatchToProps = {
   addShowLoop,
   editShowLoop,
   removeShowLoop,
+  editShowCountdown,
 };
 
 class VoiceForm extends React.Component {
@@ -243,13 +245,81 @@ class LoopForm extends React.Component {
   }
 };
 
+class CountdownForm extends React.Component {
+  constructor(props) {
+    super(props);
+
+    this.state = this.makeStateFromProps(props);
+
+    this.onChange = this.onChange.bind(this);
+    this.onSubmit = this.onSubmit.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps) {
+    this.setState(this.makeStateFromProps(nextProps));
+  }
+
+  makeStateFromProps(props) {
+    return {
+      background: props.data ? props.data.background : '',
+      time: props.data ? props.data.time : 5,
+      fontFamily: props.data ? props.data.fontFamily : '',
+      fontColor: props.data ? props.data.fontColor : '',
+      fontSize: props.data ? props.data.fontSize : '',
+    };
+  }
+
+  onChange(e) {
+    const key = e.target.name;
+    const value = e.target.value;
+
+    this.setState({
+      [key]: value,
+    });
+  }
+
+  onSubmit() {
+    this.props.action(this.state);
+  }
+
+  render() {
+    const { background, time, fontFamily, fontColor, fontSize } = this.state;
+
+    return (
+      <div className="manage__form-item">
+        <div>
+          { background ? <img src={background} /> : null }
+        </div>
+        <div>
+          <label>background url
+            <input name="background" type="text" value={background} onChange={this.onChange} />
+          </label>
+          <label>time
+            <input name="time" type="number" value={time} onChange={this.onChange} min="1" />
+          </label>
+          <label>font family
+            <input name="fontFamily" type="text" value={fontFamily} onChange={this.onChange} />
+          </label>
+          <label>font color
+            <input name="fontColor" type="text" value={fontColor} onChange={this.onChange} />
+          </label>
+          <label>font size
+            <input name="fontSize" type="text" value={fontSize} onChange={this.onChange} />
+          </label>
+          <button onClick={this.onSubmit}>submit</button>
+        </div>
+      </div>
+    );
+  }
+}
+
 const Manage = (props) => {
   const { path, show, setShowBlackout, addShowVoice, editShowVoice,
      editShowSlideOrder, removeShowVoice, addShowSlide, editShowSlide,
-     removeShowSlide, addShowLoop, editShowLoop, removeShowLoop } = props;
+     removeShowSlide, addShowLoop, editShowLoop, removeShowLoop, editShowCountdown } = props;
 
   if (path !== 'manage') return null;
-  const { slides, voices, loops } = show;
+  const { slides, voices, loops, countdown } = show;
 
   return (
     <div className="manage">
@@ -269,6 +339,13 @@ const Manage = (props) => {
             data={voice}
           />
         ))}
+      </div>
+      <div className="manage__form">
+        <h3>Countdown</h3>
+        <CountdownForm
+          action={(countdown) => editShowCountdown(countdown)}
+          data={countdown}
+        />
       </div>
       <div className="manage__form">
         <h3>Slides</h3>
