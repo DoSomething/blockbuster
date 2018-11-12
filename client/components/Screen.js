@@ -2,6 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { modes } from '../../shared/modes';
 import SlideShow from './SlideShow';
+import Countdown from './Countdown';
 import '../styles/Screen.scss';
 
 // Helper function to scale the text font size based on length
@@ -20,6 +21,7 @@ const mapStateToProps = (state) => ({
   slides: state.show.slides,
   loops: state.show.loops,
   loop: state.loop,
+  showCountdown: state.show.countdown,
 });
 
 const mapDispatchToProps = (dispatch) => ({ /* ... */ });
@@ -29,7 +31,7 @@ function getShowProps(props, show) {
 }
 
 const Screen = (props) => {
-  const { size, show, slides, loops } = props;
+  const { size, show, slides, loops, showCountdown } = props;
 
   const mode = getShowProps(props.mode, show);
 
@@ -72,8 +74,16 @@ const Screen = (props) => {
         content = <SlideShow slides={loopSlides} speed={loop.speed} />
       }
       break;
-  }
 
+    case modes.COUNTDOWN:
+      style.backgroundImage = `url("${showCountdown.background}")`;
+      style.fontFamily = showCountdown.fontFamily;
+      style.color = showCountdown.fontColor;
+
+      content = <Countdown />;
+      break;
+  }
+  
   return (
     <div className={`screen -${size} -${show}`} style={style}>
       { content }
