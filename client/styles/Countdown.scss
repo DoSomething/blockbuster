@@ -1,0 +1,43 @@
+@import './toolbox';
+
+.countdown-container {
+  .countdown {
+    display: inline-block;
+    margin: $spacing;
+    text-align: center;
+    vertical-align: top;
+
+    .countdown__item {
+      background-size: 100% 100%;
+    }
+
+    &.-highlighted {
+      border: 1px solid $yellow;
+    }
+
+    &.-highlighted-live {
+      border: 1px solid $red;
+    }
+
+    img {
+      width: 150px;
+      height: 150px;
+    }
+  }
+
+  .screen__text {
+    display: inline-block;
+    font-size: 150px !important;
+  }
+
+  .button-tray {
+    display: block;
+    
+    button {
+      width: 100px;
+      height: 50px;
+      margin: 20px;
+      border-radius: 10px;
+    }
+  }
+}
