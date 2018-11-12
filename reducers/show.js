@@ -11,6 +11,7 @@ import {
   ADD_SHOW_LOOP,
   EDIT_SHOW_LOOP,
   REMOVE_SHOW_LOOP,
+  EDIT_SHOW_COUNTDOWN,
 } from '../actions';
 
 export function show(state = {}, action) {
@@ -105,6 +106,12 @@ export function show(state = {}, action) {
           }
           return slide
         }),
+      }
+
+    case EDIT_SHOW_COUNTDOWN:
+      return {
+        ...state,
+        countdown: action.countdown,
       }
 
     default:
