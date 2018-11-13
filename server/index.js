@@ -10,6 +10,14 @@ const io = socketIo(server);
 
 const api = require('./api');
 
+const Twitter = require('twitter');
+var client = new Twitter({
+  consumer_key: process.env.CONSUMER_KEY,
+  consumer_secret: process.env.CONSUMER_SECRET,
+  access_token_key: process.env.ACCESS_TOKEN_KEY,
+  access_token_secret: process.env.ACCESS_TOKEN_SECRET, 
+});
+
 import { events } from '../shared/events';
 import { initialState } from '../shared/initialState';
 import { makeStore } from '../shared/store';
@@ -41,6 +49,19 @@ app.use('/public', express.static(path.join(__dirname, '../public')));
 app.get('/', (req, res) => {
   res.sendFile(path.join(__dirname, 'page.html'));
 });
+
+app.get('/tweets', (req, res) => {
+  client.get('search/tweets', {q: `${process.env.TWITTER_SEARCH} -filter:retweets`, tweet_mode: 'extended'}, function(error, tweets, response) {
+    if (!tweets || !tweets.statuses) return {};
+    const processedTweets = tweets.statuses.map(tweet => {
+      return {
+        text: tweet.full_text,
+        username: tweet.user && tweet.user.screen_name,
+      }
+    })
+    res.send(processedTweets);
+  });
+})
 
 const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => {
