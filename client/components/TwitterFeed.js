@@ -18,9 +18,15 @@ const mapDispatchToProps = {
 class TwitterFeed extends React.Component {
 	constructor(props) {
 		super(props);
+
+		this.fetchTweets = this.fetchTweets.bind(this);
 	}
 
 	componentDidMount() {
+		this.fetchTweets()
+	}
+
+	fetchTweets() {
 		fetch('/tweets')
 		  .then(response => {
 		    return response.json();
@@ -37,6 +43,7 @@ class TwitterFeed extends React.Component {
 			<div>
 			<button onClick={() => this.props.setMode(modes.TWITTER, false)}>Go Preview</button>
 			<button onClick={() => this.props.setMode(modes.TWITTER, true)}>Go Live!</button>
+			<button onClick={this.fetchTweets}>Refresh Tweets</button>
 			<ul>
 				{ this.props.tweets.map((tweet, index) => (
 					<li key={index}><button onClick={() => this.props.setShowTweets(
