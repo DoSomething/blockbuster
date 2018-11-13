@@ -10,6 +10,7 @@ import Manage from './Manage';
 import Slides from './Slides';
 import Loops from './Loops';
 import CountdownContainer from './CountdownContainer';
+import TwitterFeed from './TwitterFeed';
 
 import '../styles/App.scss';
 
@@ -30,12 +31,13 @@ const App = ({ path }) => {
         <Screen show="preview" />
       </Panel>
       <Panel>
-        <Nav items={['voice', 'slides', 'manage', 'loops', 'countdown', 'sync']} />
+        <Nav items={['voice', 'slides', 'manage', 'loops', 'countdown', 'twitter', 'sync']} />
         <Voice />
         <Manage />
         <Slides />
         <Loops />
         <CountdownContainer />
+        <TwitterFeed />
       </Panel>
     </div>
   );
