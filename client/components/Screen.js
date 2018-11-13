@@ -22,6 +22,7 @@ const mapStateToProps = (state) => ({
   loops: state.show.loops,
   loop: state.loop,
   showCountdown: state.show.countdown,
+  tweets: state.show.tweets,
 });
 
 const mapDispatchToProps = (dispatch) => ({ /* ... */ });
@@ -31,12 +32,14 @@ function getShowProps(props, show) {
 }
 
 const Screen = (props) => {
-  const { size, show, slides, loops, showCountdown } = props;
+  const { size, show, slides, loops, showCountdown, tweets } = props;
 
   const mode = getShowProps(props.mode, show);
 
   const style = {};
   let content = null;
+  const voice = getShowProps(props.message, show);
+  let contentStyle = {}
 
   switch (mode) {
     case modes.BLACKOUT:
@@ -50,8 +53,6 @@ const Screen = (props) => {
       break;
 
     case modes.VOICE:
-      const voice = getShowProps(props.message, show);
-      let contentStyle = {}
 
       if (voice.display) {
         const { background, fontFamily, fontColor, fontSize } = voice.display;
@@ -82,6 +83,20 @@ const Screen = (props) => {
 
       content = <Countdown />;
       break;
+
+    case modes.TWITTER:
+      if (voice.display) {
+        const { background, fontFamily, fontColor, fontSize } = voice.display;
+
+        style.backgroundImage = `url("${voice.display.background}")`;
+        style.fontFamily = fontFamily;
+        style.color = fontColor;
+
+        contentStyle.fontSize = scaleFontSize('100px', voice.message);
+      }
+
+      content = <SlideShow slides={tweets} style={contentStyle} speed={10} mode="tweet"/>
+
   }
   
   return (
