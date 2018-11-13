@@ -11,6 +11,7 @@ import {
   EDIT_SHOW_LOOP,
   REMOVE_SHOW_LOOP,
   EDIT_SHOW_COUNTDOWN,
+  SET_SHOW_TWEETS,
 } from './';
 
 export function setShowBlackout(blackout) {
@@ -59,4 +60,8 @@ export function removeShowLoop(index) {
 
 export function editShowCountdown(countdown) {
   return { type: EDIT_SHOW_COUNTDOWN, countdown };
+}
+
+export function setShowTweets(tweets) {
+  return { type: SET_SHOW_TWEETS, tweets };
 }

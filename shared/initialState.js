@@ -48,6 +48,7 @@ export const initialState = {
       fontFamily: 'Arial, Helvetica, sans-serif',
       fontColor: '#111',
     },
+    tweets: [],
     blackout: '#111',
   }
 };

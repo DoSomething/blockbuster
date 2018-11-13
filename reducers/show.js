@@ -12,6 +12,7 @@ import {
   EDIT_SHOW_LOOP,
   REMOVE_SHOW_LOOP,
   EDIT_SHOW_COUNTDOWN,
+  SET_SHOW_TWEETS,
 } from '../actions';
 
 export function show(state = {}, action) {
@@ -112,6 +113,12 @@ export function show(state = {}, action) {
       return {
         ...state,
         countdown: action.countdown,
+      }
+
+    case SET_SHOW_TWEETS:
+      return {
+        ...state,
+        tweets: action.tweets,
       }
 
     default:

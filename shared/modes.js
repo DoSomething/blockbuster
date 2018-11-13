@@ -4,4 +4,5 @@ export const modes = {
   BLACKOUT: 'BLACKOUT',
   LOOP: 'LOOP',
   COUNTDOWN: 'COUNTDOWN',
+  TWITTER: 'TWITTER',
 };

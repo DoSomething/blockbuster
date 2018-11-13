@@ -21,6 +21,7 @@ export const ADD_SHOW_LOOP = 'ADD_SHOW_LOOP';
 export const EDIT_SHOW_LOOP = 'EDIT_SHOW_LOOP';
 export const REMOVE_SHOW_LOOP = 'REMOVE_SHOW_LOOP';
 export const EDIT_SHOW_COUNTDOWN = 'EDIT_SHOW_COUNTDOWN';
+export const SET_SHOW_TWEETS = 'SET_SHOW_TWEETS';
 export * from './show';
 
 export const SET_SLIDE = 'SET_SLIDE';
@@ -53,6 +54,7 @@ export const _modeMapping = {
   SET_VOICE_MESSAGE: modes.VOICE,
   SET_SLIDE: modes.SLIDE,
   SET_LOOP: modes.LOOP,
+  SET_TWITTER_FEED: modes.TWITTER,
 };
 
 export const _socketEvents = [
@@ -75,5 +77,6 @@ export const _socketEvents = [
   EDIT_SHOW_LOOP,
   REMOVE_SHOW_LOOP,
   EDIT_SHOW_COUNTDOWN,
+  SET_SHOW_TWEETS,
   SYNC,
 ];
