@@ -35,11 +35,17 @@ class SlideShow extends React.Component {
       return null;
     }
 
-    const src = slide.background;
+    switch(this.props.mode) {
+      case 'tweet':
+        return <h1 className="screen__text" style={this.props.style}>{ `@${slide.username}: "${slide.text}"` }</h1>;
 
-    return (
-      <img src={src}/>
-    );
+      default:
+        const src = slide.background;
+        return (
+          <img src={src}/>
+        );
+    }
+
   }
 }
 
