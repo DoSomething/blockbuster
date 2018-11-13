@@ -55,8 +55,8 @@ app.get('/tweets', (req, res) => {
     if (!tweets || !tweets.statuses) return {};
     const processedTweets = tweets.statuses.map(tweet => {
       return {
+        id: tweet.id_str,
         text: tweet.full_text,
-        username: tweet.user && tweet.user.screen_name,
       }
     })
     res.send(processedTweets);
