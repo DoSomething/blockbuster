@@ -1,5 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import { TwitterTweetEmbed } from 'react-twitter-embed';
 
 import '../styles/Screen.scss';
 
@@ -9,6 +10,7 @@ class SlideShow extends React.Component {
 
     this.state = {
       slide: 0,
+      showTweet: true,
     }
   }
 
@@ -20,12 +22,14 @@ class SlideShow extends React.Component {
       if (slide >= this.props.slides.length) {
         slide = 0;
       }
-      this.setState({slide});
+      this.setState({slide, showTweet: false });
+      this.timeout = setTimeout(() => this.setState({showTweet: true}), 300);
     }, slideShowSpeed);
   }
 
   componentWillUnmount() {
     clearInterval(this.interval);
+    clearTimeout(this.timeout);
   }
 
   render() {
@@ -37,7 +41,15 @@ class SlideShow extends React.Component {
 
     switch(this.props.mode) {
       case 'tweet':
-        return <h1 className="screen__text" style={this.props.style}>{ `@${slide.username}: "${slide.text}"` }</h1>;
+        return (
+          <div className="twitter-feed">
+            { this.state.showTweet ? (
+              <TwitterTweetEmbed
+                tweetId={slide.id}
+              />
+            ) : null }
+          </div>
+        );
 
       default:
         const src = slide.background;
