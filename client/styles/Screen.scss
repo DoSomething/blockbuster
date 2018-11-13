@@ -40,4 +40,27 @@
       border: 2px solid $yellow;
     }
   }
+
+  .twitter-feed {
+      display: flex;
+      -ms-flex-pack: center;
+      justify-content: center;
+      -ms-flex-line-pack: center;
+      align-content: center;
+      height: -webkit-fill-available;
+
+      div {
+        align-self: center;
+
+        .twitter-tweet {
+          max-width: 1000px !important;
+          width: 100%;
+          max-height: 1000px;
+
+          .EmbeddedTweet {
+            max-width: 1000px !important;
+          }
+        }
+      }
+  }
 }
